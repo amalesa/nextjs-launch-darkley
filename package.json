@@ -1,0 +1,22 @@
+{
+  "name": "create-next-example-app",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "build": "next build",
+    "start": "cross-env NODE_ENV=production node server.js"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.14.0",
+    "isomorphic-unfetch": "^3.0.0",
+    "launchdarkly-node-server-sdk": "^5.9.1",
+    "next": "latest",
+    "nodemon": "^1.19.4",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0"
+  },
+  "devDependencies": {
+    "cross-env": "^5.2.0"
+  }
+}
