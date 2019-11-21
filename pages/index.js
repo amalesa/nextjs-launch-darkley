@@ -9,7 +9,6 @@ const SimplePage = ({flags}) => (
 )
 
 SimplePage.getInitialProps = ({  req }) => {
-  console.log(req.flags)
   return { flags: req.flags }
 }
 

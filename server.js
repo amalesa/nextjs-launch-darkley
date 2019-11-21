@@ -4,14 +4,13 @@ const next = require('next')
 const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
-const handle = app.getRequestHandler()
 const ldClient = require('./utils/launchDarkley')
 
 app.prepare().then(() => {
   const server = express()
 
   server.all('*', async (req, res) => {
-    
+
     try {
       const result = await ldClient.getLdClient().allFlagsState(ldClient.user)
       const flags = await result.allValues()
@@ -21,9 +20,7 @@ app.prepare().then(() => {
     catch {
       req.flags = {flags: null}
       return app.render(req, res, '/', req.query)
-
     }
-
   })
 
   server.listen(port, err => {
