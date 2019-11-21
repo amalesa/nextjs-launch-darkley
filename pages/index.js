@@ -1,19 +1,17 @@
-import React from 'react'
-import Link from 'next/link'
+const SimplePage = ({flags}) => (
+<div>
+  <h1>Flags</h1>
+    {flags['flag-test'] && <div>Flag 1</div>}
+    {flags['flag-test-2'] && <div>Flag 2</div>}
+    {flags['flag-test-3'] && <div>Flag 3</div>}
 
-const App = () => (
-  <ul>
-    <li>
-      <Link href='/simplepage'>
-        <a>Simple Page</a>
-      </Link>
-    </li>
-    <li>
-      <Link href={{ pathname: '/posts', query: { id: '2' } }} as='/posts/2'>
-        <a>post #2</a>
-      </Link>
-    </li>
-  </ul>
+</div>
 )
 
-export default App
+SimplePage.getInitialProps = ({  req }) => {
+  console.log(req.flags)
+  return { flags: req.flags }
+}
+
+
+export default SimplePage

@@ -4,12 +4,14 @@ var LaunchDarkly = require('launchdarkly-node-server-sdk');
 
 var ldclient = LaunchDarkly.init(process.env.LAUNCH_DARKLEY);
 var user = {
-  firstName: 'Unknown',
-  lastName: 'Unknown',
+  firstName: 'Aleksandra',
+  lastName: 'Malesa',
   key: 'UNIQUE IDENTIFIER',
+  email: 'a_malesa@hotmail.co.uk',
   custom: {
     groups: 'beta_testers'
-  }
+  },
+  country:'Sweden'
 };
 
 const getLdClient = () => ldclient.once('ready', () => {

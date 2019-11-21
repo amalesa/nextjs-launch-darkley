@@ -10,32 +10,19 @@ const ldClient = require('./utils/launchDarkley')
 app.prepare().then(() => {
   const server = express()
 
-  server.get('/simplepage', async (req, res) => {
-    return app.render(req, res, '/simplepage', req.query)
-  })
-  
-  server.get('/launchDarkley',  async (req, res) => {
+  server.all('*', async (req, res) => {
+    
     try {
       const result = await ldClient.getLdClient().allFlagsState(ldClient.user)
       const flags = await result.allValues()
-      res.send(flags)
-
+      req.flags = flags
+      return app.render(req, res, '/', req.query)
     }
     catch {
-      req.flags = null
-      res.send({flags: null})
+      req.flags = {flags: null}
+      return app.render(req, res, '/', req.query)
+
     }
-    
-  })
-
-  server.get('/posts/:id', (req, res) => {
-
-    return app.render(req, res, '/posts', { id: req.params.id })
-  })
-
-  server.all('*', (req, res) => {
-    
-    return handle(req, res)
 
   })
 
